@@ -1,0 +1,9 @@
+<h1>Available Decks</h1>
+<% @decks.each do |deck| %>
+<ul>
+ <li><img src= "<%=deck.cards.first.image_url%>"></li>
+ <li><%=deck.name%></li>
+</ul>
+<%end%>
+
+

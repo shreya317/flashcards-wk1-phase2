@@ -1,0 +1,16 @@
+<div class="container">
+
+<p><b>Deck: </b> <%=@current_card.deck.name%></p>
+
+<p><%=@turn.card.image_url%></p>
+
+<form action="/turns" method="POST">
+    <input type="text" name="" placeholder="Guess"/>
+    <input type="submit" value="Check Guess!">
+</form>
+
+
+
+
+
+</div>
