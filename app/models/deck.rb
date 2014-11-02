@@ -12,4 +12,5 @@ class Deck < ActiveRecord::Base
   def complete?
       @current_deck.empty?
   end
+
 end

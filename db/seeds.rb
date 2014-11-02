@@ -29,7 +29,6 @@ hollywood_stars = Deck.create!(name: "Hollywood Stars")
 parser = Parser.new('db/fixtures/hollywood_stars.txt')
 parser.hashes.each { |card_hash| Deck.cards << Card.create(card_hash)}
 
-
 User.destroy_all
 Deck.destroy_all
 Card.destroy_all

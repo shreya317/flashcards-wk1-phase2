@@ -1,48 +1,30 @@
-# before '/secrets/:secret' do
-#   redirect '/' unless User.find(session[:user_id])
-# end
 
+get '/sessions/new' do
+  erb :"sessions/new"
+end
 
-# get '/' do
-#   erb :index
-# end
+post "/sessions" do
+  user_credentials = params[:user]
+  @user = User.find_by(email: user_credentials[:email])
+  if @user.authenticate(user_credentials[:password])
+    session[:user_id] = @user.id
+    erb :"users/stats"
+  else
+    redirect "/"
+  end
+end
 
-# get '/secrets/secret' do
-#   erb :secret
-# end
+delete '/sessions' do
+  session.clear
+  redirect '/'
+end
 
-# get '/sessions/new' do
-#   erb :"sessions/new"
-# end
+get '/users/new' do
+  erb :"users/new"
+end
 
-# post '/sessions' do
-#   if @user = User.find_by(params[:email])
-#     if @user.login(params[:email], params[:password])
-#       session[:user_id] = @user.id
-#       redirect '/secrets/secret'
-#     else
-#       redirect '/'
-#     end
-#   end
-# end
-
-# delete '/sessions' do
-#   session.clear
-#   redirect '/'
-# end
-
-# get '/users/new' do
-#   erb :"users/new"
-# end
-
-# post '/users' do
-#   @user = User.new(params[:email])
-#   @user.password = params[:password]
-#   if @user.save!
-#     @user.login(params[:email], params[:password])
-#     session[:user_id] = @user.id
-#     redirect '/secrets/secret'
-#   else
-#     redirect '/'
-#   end
-# end
+post "/users" do
+  @user = User.create(params[:user])
+  session[:user_id] = @user.id
+  erb :index
+end
