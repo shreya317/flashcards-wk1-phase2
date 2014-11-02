@@ -17,9 +17,17 @@ def password=(new_password)
 end
 
 
-def login(email, entered_password)
-  @user = User.find_by(email: email)
-  @user.password == entered_password
+def authenticate(entered_password)
+	# instance variable or lookup not needed, we are already at user
+	# email cannot be used as variable name here as it is already a method
+  # user = User.find_by(email: supplied_email)
+  password == entered_password
+end
+
+def owned_decks
+	owned_decks = []
+	played_cards.all.each {|card| owned_decks << card.deck}
+	owned_decks.uniq
 end
 
 end
