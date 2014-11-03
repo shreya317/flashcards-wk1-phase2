@@ -58,6 +58,10 @@ li {
 		.container a {
 			text-decoration: none;
 		}
+			.session_message {
+				text-align: center;
+				color: red;
+			}
 
 .login_create {
   margin: 20px auto;

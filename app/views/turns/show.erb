@@ -1,5 +1,5 @@
 <div class="container">
-<p><%= session[:message] %></p>
+<p class="session_message"><b><%= session[:message] %></b></p>
 
 <% @turn %>
 <p><b>Deck: </b> <%=@turn.card.deck.name%></p>
@@ -9,8 +9,8 @@
 <form action="/turns" method="POST">
     <input type="text" name="guess" placeholder="Guess"/>
     <input type="submit" value="Check Guess!">
-    <input type ="hidden" name="turn_id" value="<%= @turn.id %>"/>
     <input type ="hidden" name="deck_id" value="<%= @deck.id %>"/>
+    <input type ="hidden" name="turn_id" value="<%= @turn.id %>"/>
 </form>
 
 </div>
