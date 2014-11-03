@@ -1,11 +1,12 @@
-<h1>Showing stats for <%= @deck.name %></h1>
+<h1>My played decks</h1>
 
-<p><img src="<%= @deck.cards.first.image_url %>"></p>
+<% if @user.owned_decks %>
+  <% @user.owned_decks.each do |deck| %>
 
-<% @user.turns.each do |turn| %>
+  <p><a href="/decks/<%= deck.id %>">
+    <img src="<%= deck.cards.first.image_url %>"><br>
+    <%= deck.name %></a>
 
-<p><img src="<%= turn.card.image_url %>"></p>
-<p><a>Times guessed: <%= t = turn.times_guessed %> - Answered correctly: <%= c = turn.correct_guesses %></a></p>
-<p>Succes rate: <%= (100 / t) * c %></p>
+  </p>
+  <% end %>
 <% end %>
-

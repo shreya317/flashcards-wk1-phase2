@@ -1,27 +1,41 @@
-# post '/turns' do
-#   if params[:turn_id].nil?
-#     deck = Deck.find(params[:deck_id])
-#     deck.start_game
-#   else
-#     deck = Turn.find(params[:turn_id]).card.deck
-#   @turn = Turn.create(player: sessions[:user_id], card: deck.get_next_card)
-#   redirect :"/turns/#{@turn.id}"
+# before '/turns/:turn_id' do
+#   if params[:turn_id] != Turn.all.order(:id).last.id
+#     redirect "/turns/#{Turn.all.order(:id).last.id}"
 #   end
 # end
 
+#whyyyyyyyy
+
+post '/turns' do
+  user = User.find(session[:user_id])
+  if user.turns.nil?
+    @deck = Deck.find(params[:deck_id])
+    current_cards = @deck.cards.shuffle
+    @turn = Turn.create!(player_id: session[:user_id], card: current_cards.shift)
+  else
+    @deck = Deck.find(params[:deck_id])
+    current_cards = @deck.cards.shuffle
+  @turn = Turn.create!(player_id: session[:user_id], card: current_cards.shift)
+  end
+  redirect "/turns/#{@turn.id}"
+end
+
+#   if session[:turns_to_complete].nil?
 
 
-# get '/turns/:turn_id' do
 
-#   @current_deck = Deck.find_by(name: "Ruby Basics").cards.to_a
-#   @current_deck.get_next_card
-#   # @current_card = @current_deck.shift
-#   @turn = Turn.create!(player: User.all.first, card: @current_card)
-#   # @turn = Turn.create(player: sessions[:user_id], card: deck.get_next_card)
-
-#   erb :'/turns/show'
-
-# end
+get '/turns/:turn_id' do
+  @turn = Turn.find(params[:turn_id])
+  @deck = Deck.find(@turn.card.deck.id)
+  if @last_turn = Turn.find(params[:turn_id].to_i - 1)
+    if @last_turn.card.correct?(params[:guess])
+      session[:message] = "Correct!"
+    else
+      session[:message] = "Sorry, that's incorrect!"
+    end
+  end
+  erb :'/turns/show'
+end
 
 # post '/turns' do
 #   @current_card = Card.new

@@ -10,3 +10,4 @@ class CreateTurns < ActiveRecord::Migration
     end
   end
 end
+

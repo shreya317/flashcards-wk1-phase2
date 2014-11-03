@@ -1,0 +1,15 @@
+<h1>Showing stats for <%= @deck.name %></h1>
+
+ <% if @user.turns %>
+   <% @user.turns.each do |turn| %>
+
+   <p><img src="<%= turn.card.image_url %>"></p>
+   <p><a>Times guessed: <%= t = turn.times_guessed %> - Answered correctly: <%= c = turn.correct_guesses %></a></p>
+
+   <p>Succes rate: <%= (100 / t) * c %></p>
+   <% end %>
+
+  </ul>
+  <%end%>
+
+

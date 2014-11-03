@@ -1,5 +1,8 @@
+get "/" do
+  erb :"index"
+end
 
-get '/sessions/new' do
+get '/sessions' do
   erb :"sessions/new"
 end
 
@@ -8,7 +11,7 @@ post "/sessions" do
   @user = User.find_by(email: user_credentials[:email])
   if @user.authenticate(user_credentials[:password])
     session[:user_id] = @user.id
-    erb :"users/stats"
+    redirect "/decks"
   else
     redirect "/"
   end
@@ -26,5 +29,12 @@ end
 post "/users" do
   @user = User.create(params[:user])
   session[:user_id] = @user.id
-  erb :index
+  redirect "/decks"
 end
+
+get "/logout" do
+  session.clear
+  redirect "/"
+end
+
+
