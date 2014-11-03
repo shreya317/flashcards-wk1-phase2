@@ -1,15 +1,105 @@
+.nav_bar {
+		border: 1px solid black;
+		border-radius: 10px;
+		text-align: center;
+		margin: 10px auto;
+		padding: 5px;
+		width: auto;
+		background-color: #7FBD00;
+		color: white;
+}
+
+	.nav_bar a {
+		color: white;
+	}
+	.nav_bar a:hover {
+		color: #47A4BE;
+	}
+
+
 .container {
   margin: 20px auto;
   width: 600px;
   padding: 0px 20px 20px 20px;
   border: 1px dotted black;
+  border-radius: 10px;
+  background-color: #A2DCEA;
 }
+
+	.container h3 {
+		padding-left: 40px;
+	}
+	
 th {
   text-align: left;
 }
 
 li {
   list-style: none;
+  /*text-align: center;*/
 }
 
+.container img {
+	/*padding-left: 0px;*/
+	border-radius: 10px;
+	height: 220px;
+	width: auto;
+}
 
+	.container form {
+		padding-left: 40px;
+	}
+
+	.container input[type=submit] {
+		width: 30;
+		margin-bottom: 4%;
+		}
+
+		.container a {
+			text-decoration: none;
+		}
+
+.login_create {
+  margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #A2DCEA;
+  color: white;
+}
+
+	.login_create h1 {
+		text-align: center;
+		color: #47A4BE;
+	}
+/*
+	.login_create h3 {
+		color: #7FBD00;
+		padding-left: 40px;
+	}*/
+
+	.login_create input[type=submit] {
+		width: 30;
+		margin-bottom: 4%;
+		}
+
+		.login_create input[type=submit]:hover{
+			background: #7FBD00;
+		}
+
+	.login_create input[type=text], input[type=password] {
+		width: 50%;
+		margin-bottom: 2%;
+		}
+
+		.login_create a {
+			color: black;
+			text-decoration: none;
+		}
+			.login_create a:hover {
+				color: #7FBD00; 
+			}
+			.login_create a {
+				padding-left: 40px;
+			}

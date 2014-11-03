@@ -1,14 +1,21 @@
-<h1>Available Decks</h1>
+<div class="container">
+	<div class="nav_bar">
+	<a href="/my_decks">My played decks</a>  |  
+	<a href="/logout">Logout</a>
+	</div>
 
-<% @decks.each do |deck| %>
-<ul>
- <li>
-  <img src="<%=deck.cards.first.image_url%>" alt="<%=deck.name%>"></li>
- <li><%=deck.name%></li>
-<form action="/turns" method="POST">
-<input type ="hidden" name="deck_id" value="<%= deck.id %>"/>
-     <input type="submit" value="Start game!">
-</form>
+	<h3>Select a deck to play</h3>
 
+	<% @decks.each do |deck| %>
+	<ul>
+	 <li><img src="<%=deck.cards.first.image_url%>" alt="<%=deck.name%>"></li>
+	 <li><%=deck.name%></li>
+	</ul>
+	
+	<form action="/turns" method="POST">
+		<input type ="hidden" name="deck_id" value="<%= deck.id %>"/>
+		<input type="submit" value="Start game!">
+	</form>
 
-<% end %>
+	<% end %>
+</div
